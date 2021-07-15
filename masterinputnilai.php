@@ -7,6 +7,7 @@ include_once("config.php");
 $result = mysqli_query($mysqli, "SELECT nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.nilai_ptspkn FROM datasiswa INNER JOIN nilaiptspkn ON datasiswa.no_siswa = nilaiptspkn.no_ptspkn ORDER BY nilaiptspkn.no_ptspkn;");
 
 $count=mysqli_num_rows($result);
+$no_urut = 0;
 ?>
 <html>
 <head>    
@@ -14,19 +15,21 @@ $count=mysqli_num_rows($result);
 </head>
  
 <body>
-	<form name="inputptspkn" method="post" action="masterinput.php">
+	<form name="inputptspkn" method="post" action="masterinputnilai.php">
 		<table>
 			<tr>
+				<th></th>
 				<th>No.</th>
 				<th>NISN</th>
 				<th>Nama Siswa</th>
 				<th>Nilai</th>
 			</tr>
-			<?php while($rows=mysqli_fetch_array($result)){ ?>
+			<?php while($rows=mysqli_fetch_array($result)){ $no_urut++?>
 			<tr>
-				<td>
-					<input  style="height:30px;" size="2" readonly name="no_ptspkn[]" type="text" id="no_ptspkn" value="<?php echo $rows['no_ptspkn']; ?>">
+				<td style="visibility:hidden">
+					<input style="height:30px;" size="2" readonly name="no_ptspkn[]" type="text" id="no_ptspkn" value="<?php echo $rows['no_ptspkn']; ?>">
 				</td>
+				<td><?php echo $no_urut;?></td>
 				<td>
 					<input size="10" disabled name="nisn_siswa[]" type="text" id="nisn_siswa" value="<?php echo $rows['nisn_siswa']; ?>">
 				</td>
@@ -55,7 +58,7 @@ if(isset($_POST['inputptspkn']))
 for($i=0;$i<$count;$i++){
 $sql1="UPDATE nilaiptspkn SET nilai_ptspkn='" . $_POST['nilai_ptspkn'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
 $result1=mysqli_query($mysqli,$sql1);
-header("Location: masterinput.php");
+header("Location: masterinputnilai.php");
 }
 }
 echo $count;
