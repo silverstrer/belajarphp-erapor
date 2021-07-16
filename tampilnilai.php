@@ -60,7 +60,8 @@ $no_urut = 0;
                         $rata_rata    =$sum_mapel / $jml_mapel;
                     ?>
                 <td>
-                    <?php                        
+                    <?php
+                        // nilai rata-rata masih manual, belum menampilkan AVERAGE-nya                        
                         echo $rata_rata;
                     ?>
                 </td>
