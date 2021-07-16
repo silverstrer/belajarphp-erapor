@@ -4,7 +4,7 @@
 include_once("config.php");
  
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.nilai_ptspkn FROM datasiswa INNER JOIN nilaiptspkn ON datasiswa.no_siswa = nilaiptspkn.no_ptspkn ORDER BY nilaiptspkn.no_ptspkn;");
+$result = mysqli_query($mysqli, "SELECT nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.ptspkn31 FROM datasiswa INNER JOIN nilaiptspkn ON datasiswa.no_siswa = nilaiptspkn.no_ptspkn ORDER BY nilaiptspkn.no_ptspkn;");
 
 $count=mysqli_num_rows($result);
 $no_urut = 0;
@@ -22,7 +22,7 @@ $no_urut = 0;
 				<th>No.</th>
 				<th>NISN</th>
 				<th>Nama Siswa</th>
-				<th>Nilai</th>
+				<th>KD 3.1</th>
 			</tr>
 			<?php while($rows=mysqli_fetch_array($result)){ $no_urut++?>
 			<tr>
@@ -37,7 +37,7 @@ $no_urut = 0;
 					<input size="50" disabled name="nama_siswa[]" type="text" id="nama_siswa" value="<?php echo $rows['nama_siswa']; ?>">
 				</td>
 				<td>
-					<input size="3" name="nilai_ptspkn[]" type="text" id="nilai_ptspkn" value="<?php echo $rows['nilai_ptspkn']; ?>">
+					<input size="3" name="ptspkn31[]" type="text" id="ptspkn31" value="<?php echo $rows['ptspkn31']; ?>">
 				</td>
 			</tr>
 			<?php } ?>
@@ -56,7 +56,7 @@ if(isset($_POST['inputptspkn']))
 	$count=count($_POST["no_ptspkn"]);
 	
 for($i=0;$i<$count;$i++){
-$sql1="UPDATE nilaiptspkn SET nilai_ptspkn='" . $_POST['nilai_ptspkn'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
+$sql1="UPDATE nilaiptspkn SET ptspkn31='" . $_POST['ptspkn31'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
 $result1=mysqli_query($mysqli,$sql1);
 header("Location: masterinputnilai.php");
 }
