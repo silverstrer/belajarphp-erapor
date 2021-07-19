@@ -55,14 +55,19 @@ $no_urut = 0;
                         $query = mysqli_query($mysqli, "SELECT * FROM nilaiptspkn WHERE no_ptspkn=$no_urut;");
                         $data    =mysqli_fetch_array($query);
                         $n_mapel    =array($data['ptspkn31'], $data['ptspkn32'], $data['ptspkn33'], $data['ptspkn34']);
-                        $jml_mapel    =count($n_mapel);  
-                        $sum_mapel    =array_sum($n_mapel);
-                        $rata_rata    =$sum_mapel / $jml_mapel;
                     ?>
                 <td>
                     <?php
-                        // nilai rata-rata masih manual, belum menampilkan AVERAGE-nya                        
-                        echo $rata_rata;
+                    // RUMUS RATA-RATA (AVERAGE)
+                    $i = 0;
+                    $cek = 0;
+                    while($i < count($n_mapel)){
+                        if($n_mapel[$i] > 0){
+                            $cek += 1; 
+                        }
+                         $i++;
+                    } 
+                    echo $avg=array_sum($n_mapel)/$cek;
                     ?>
                 </td>
 
