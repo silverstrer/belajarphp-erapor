@@ -44,12 +44,12 @@ $result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspk
 				<td>
 					<?php 
 					if($_GET['nilai']=='ptspkn31'){
-						echo "<input size='3' name='ptspkn31[]' type='text' id='ptspkn31' value='".$rows['ptspkn31']."'>";
+						echo "<input size='3' name='ptspkn31[]' type='number' min='0' max='100' id='ptspkn31' value='".$rows['ptspkn31']."'>";
 					} elseif ($_GET['nilai']=='ptspkn32') {
-						echo "<input size='3' name='ptspkn32[]' type='text' id='ptspkn32' value='".$rows['ptspkn32']."'>";
+						echo "<input size='3' name='ptspkn32[]' type='number' min='0' max='100' id='ptspkn32' value='".$rows['ptspkn32']."'>";
 					} elseif ($_GET['nilai']=='ptspkn33') {
-						echo "<input size='3' name='ptspkn33[]' type='text' id='ptspkn33' value='".$rows['ptspkn33']."'>";
-					} else {echo "<input size='3' name='ptspkn34[]' type='text' id='ptspkn34' value='".$rows['ptspkn34']."'>";} 
+						echo "<input size='3' name='ptspkn33[]' type='number' min='0' max='100' id='ptspkn33' value='".$rows['ptspkn33']."'>";
+					} else {echo "<input size='3' name='ptspkn34[]' type='number' min='0' max='100' id='ptspkn34' value='".$rows['ptspkn34']."'>";} 
 					?>
 				</td>
 			</tr>
