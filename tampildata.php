@@ -40,7 +40,7 @@ $count=mysqli_num_rows($result);
 					<?php echo $rows['kelas']; ?>
 				</td>
 				<td  style="border: 1px solid black;">
-                    <a href="editdata.php?no_siswa= <?php echo $rows['no_siswa']; ?>">edit </a>| <a href=""> raport</a>
+                    <a href="editdata.php?no_siswa= <?php echo $rows['no_siswa']; ?>">edit </a>| <a href="tampilraport.php?no_siswa= <?php echo $rows['no_siswa']; ?>"> raport</a>
 				</td>
 			</tr>
 			<?php } ?>
