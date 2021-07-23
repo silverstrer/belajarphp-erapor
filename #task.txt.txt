@@ -1,0 +1,4 @@
+-buat form php untuk nilai PH
+-buat form php untuk nilai PAT
+-Masukkan nilai PH dan nilai PAT ke tampilraport.php
+-rapikan semua sintaks di semua file
