@@ -83,7 +83,7 @@ if(isset($_POST['inputdatasiswa']))
 
     $result = mysqli_query($mysqli,"INSERT INTO datasiswa(no_siswa, nis_siswa, nisn_siswa, nama_siswa, kelas, tempatlahir_siswa, tgllahir_siswa, kelamin_siswa, agama_siswa, pendseb_siswa, alamat_siswa) VALUES ('','$nis_siswa','$nisn_siswa','$nama_siswa','$kelas','$tempatlahir_siswa','$tgllahir_siswa','$kelamin_siswa','$agama_siswa','$pendseb_siswa','$alamat_siswa')");
 
-    $nilai = mysqli_query($mysqli,"INSERT INTO nilaiptspkn(no_ptspkn, nilai_ptspkn) VALUES ('','0')");
+    $nilai = mysqli_query($mysqli,"INSERT INTO nilaiptspkn(no_ptspkn, ptspkn31) VALUES ('','0')");
 
 header("location:inputdatasiswa.php");
 mysqli_close($mysqli);
