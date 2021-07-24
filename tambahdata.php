@@ -1,5 +1,6 @@
 <html>
-<head>    
+<head>
+    <link rel="stylesheet" href="style.css">    
     <title>Menampilkan Data</title>
 </head>
  

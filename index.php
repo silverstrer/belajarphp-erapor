@@ -8,11 +8,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php 
+	session_start();
+	if($_SESSION['status']!="login"){
+		header("location:login.php?pesan=belum_login");
+	}
+?>
     <h1>Menu Utama</h1>
-    <a href="tampildata.php">Data Siswa</a>
+    <h3>Selamat datang <?php echo $_SESSION['sebagai_akun']; ?>!</h3>
+    <a href="logout.php">Logout</a>
+    
+    <br>
+    <br>
+<?php 
+    if($_SESSION['role_akun']=='admin'){
+        echo "<a href='tampildata.php'>Data Siswa</a>";
+    }
+?>
+    
     <a href="">Input Nilai PH - Pengetahuan</a>
     <a href="">Input Nilai PH - Keterampilan</a>
     <a href="tampilmapelpts.php">Input Nilai PTS</a>
     <a href="">Input Nilai PAS/PAT</a>
+    
 </body>
 </html>
