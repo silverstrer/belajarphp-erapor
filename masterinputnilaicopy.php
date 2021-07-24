@@ -11,7 +11,7 @@ $result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspk
 </head>
  
 <body>
-	<a href="tampilnilaicopy.php">Kembali></a>
+	<a href="tampilmapel.php">Kembali></a>
 	<?php 
 		if($_GET['nilai']=='ptspkn31'){
 			echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn31".">";
@@ -21,6 +21,9 @@ $result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspk
 				echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn33".">";
 			} else {echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn34".">";} 
 	?>
+
+	<h1>Penilaian Akhir Semester / Tahun</h1>
+
 	<form name="inputptspkn" method="post" action="masterinputnilaicopy.php?nilai=ptspkn31">
 		<table>
 			<tr>

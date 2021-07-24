@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+
+    <h1>Penilaian Akhir Semester / Tahun</h1>
     <table>
         <tr>
             <!-- KD Kelas 6 -->
@@ -32,10 +34,10 @@
             <td>2</td>
             <td>Pendidikan Kewarganegaraan</td>
             <td>
-                <a href="masterinputnilai.php">3.1</a> |
-                <a href="">3.2</a> |
-                <a href="`">3.3</a> |
-                <a href="">3.4</a>
+                <a href="masterinputnilaicopy.php?nilai=ptspkn31">3.1</a> |
+                <a href="masterinputnilaicopy.php?nilai=ptspkn32">3.2</a> |
+                <a href="masterinputnilaicopy.php?nilai=ptspkn33">3.3</a> |
+                <a href="masterinputnilaicopy.php?nilai=ptspkn34">3.4</a>
             </td>    
         </tr>
         <tr>
