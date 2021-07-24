@@ -13,6 +13,8 @@ $count=mysqli_num_rows($result);
 </head>
  
 <body>
+	<h1>Data Siswa</h1>
+	<a href="tambahdata.php">Tambah Siswa Baru</a>
 		<table>
 			<tr>
 				<th  style="border: 1px solid black;">No.</th>
