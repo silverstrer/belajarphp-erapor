@@ -2,8 +2,9 @@
 // Create database connection using config file
 include_once("config.php");
  
+$kelas = $_GET['kelas'];
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.ptspkn31, nilaiptspkn.ptspkn32, nilaiptspkn.ptspkn33, nilaiptspkn.ptspkn34 FROM datasiswa INNER JOIN nilaiptspkn ON datasiswa.no_siswa = nilaiptspkn.no_ptspkn ORDER BY nilaiptspkn.no_ptspkn;");
+$result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.ptspkn31, nilaiptspkn.ptspkn32, nilaiptspkn.ptspkn33, nilaiptspkn.ptspkn34 FROM datasiswa, nilaiptspkn WHERE datasiswa.no_siswa=nilaiptspkn.no_ptspkn AND datasiswa.kelas='$kelas';");
 ?>
 <html>
 <head>    
@@ -21,10 +22,6 @@ $result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspk
 				echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn33".">";
 			} else {echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn34".">";} 
 	?>
-
-	<h1>Penilaian Akhir Semester / Tahun</h1>
-
-	<form name="inputptspkn" method="post" action="masterinputnilaicopy.php?nilai=ptspkn31">
 		<table>
 			<tr>
 				<th>No.</th>
