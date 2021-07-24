@@ -12,6 +12,7 @@ while($datasiswa = mysqli_fetch_array($result)){
 <html>
 <head>    
     <title>Menampilkan Data</title>
+    <link rel="stylesheet" href="style.css">
 </head>
  
 <body>

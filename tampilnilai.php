@@ -12,6 +12,7 @@ $no_urut = 0;
 <html>
 <head>    
     <title>Menampilkan Data</title>
+    <link rel="stylesheet" href="style.css">   
 </head>
  
 <body>

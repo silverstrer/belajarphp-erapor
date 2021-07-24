@@ -2,25 +2,25 @@
 // Create database connection using config file
 include_once("config.php");
  
-$kelas = $_GET['kelas'];
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.ptspkn31, nilaiptspkn.ptspkn32, nilaiptspkn.ptspkn33, nilaiptspkn.ptspkn34 FROM datasiswa, nilaiptspkn WHERE datasiswa.no_siswa=nilaiptspkn.no_ptspkn AND datasiswa.kelas='$kelas';");
+$result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.ptspkn31, nilaiptspkn.ptspkn32, nilaiptspkn.ptspkn33, nilaiptspkn.ptspkn34 FROM datasiswa, nilaiptspkn WHERE datasiswa.no_siswa=nilaiptspkn.no_ptspkn;");
 ?>
 <html>
-<head>    
+<head>  
+	<link rel="stylesheet" href="style.css">  
     <title>Menampilkan Data</title>
 </head>
  
 <body>
-	<a href="tampilmapel.php">Kembali></a>
+	<a href="tampilmapelpts.php">Kembali></a>
 	<?php 
 		if($_GET['nilai']=='ptspkn31'){
-			echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn31".">";
+			echo "<form name='inputptspkn' method='post' action="."masterinputnilaipts.php?nilai=ptspkn31".">";
 			} elseif ($_GET['nilai']=='ptspkn32') {
-			echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn32".">";
+			echo "<form name='inputptspkn' method='post' action="."masterinputnilaipts.php?nilai=ptspkn32".">";
 			} elseif ($_GET['nilai']=='ptspkn33') {
-				echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn33".">";
-			} else {echo "<form name='inputptspkn' method='post' action="."masterinputnilaicopy.php?nilai=ptspkn34".">";} 
+				echo "<form name='inputptspkn' method='post' action="."masterinputnilaipts.php?nilai=ptspkn33".">";
+			} else {echo "<form name='inputptspkn' method='post' action="."masterinputnilaipts.php?nilai=ptspkn34".">";} 
 	?>
 		<table>
 			<tr>
@@ -68,35 +68,38 @@ if(isset($_POST['inputptspkn'])){
 	if($_GET['nilai']=='ptspkn31'){
 		$count=count($_POST["no_ptspkn"]);
 			for($i=0;$i<$count;$i++){	
-					$sql1="UPDATE nilaiptspkn SET ptspkn31='" . $_POST['ptspkn31'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
+					$sql1="UPDATE nilaiptspkn SET ptspkn31='" . $_POST['ptspkn31'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'  ";
 					$result1=mysqli_query($mysqli,$sql1);
-					header("Location: masterinputnilaicopy.php?nilai=ptspkn31");
 		}
+		header("Location: masterinputnilaipts.php?nilai=ptspkn31");	
 	}
 	elseif($_GET['nilai']=='ptspkn32'){
 		$count=count($_POST["no_ptspkn"]);
 			for($i=0;$i<$count;$i++){	
 					$sql1="UPDATE nilaiptspkn SET ptspkn32='" . $_POST['ptspkn32'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
 					$result1=mysqli_query($mysqli,$sql1);
-					header("Location: masterinputnilaicopy.php?nilai=ptspkn32");
+					
 		}
+		header("Location: masterinputnilaipts.php?nilai=ptspkn32");
 	}	
 	elseif($_GET['nilai']=='ptspkn33'){
 		$count=count($_POST["no_ptspkn"]);
 			for($i=0;$i<$count;$i++){	
 					$sql1="UPDATE nilaiptspkn SET ptspkn33='" . $_POST['ptspkn33'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
 					$result1=mysqli_query($mysqli,$sql1);
-					header("Location: masterinputnilaicopy.php?nilai=ptspkn33");
+					
 		}
+		header("Location: masterinputnilaipts.php?nilai=ptspkn33");
 	}	
 	else{
 		$count=count($_POST["no_ptspkn"]);
 			for($i=0;$i<$count;$i++){	
 					$sql1="UPDATE nilaiptspkn SET ptspkn34='" . $_POST['ptspkn34'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
-					$result1=mysqli_query($mysqli,$sql1);
-					header("Location: masterinputnilaicopy.php?nilai=ptspkn34");
+					$result1=mysqli_query($mysqli,$sql1);		
 		}
-	}		
+		header("Location: masterinputnilaipts.php?nilai=ptspkn34");
+	}
+		
 }
 mysqli_close($mysqli);
 

@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">   
 </head>
 <body>
-
-    <h1>Penilaian Akhir Semester / Tahun</h1>
+<a href="index.php">Kembali</a>
+<a href="tampilrekappts.php">Rekap Nilai PTS</a>
+    <h1>Penilaian Tengah Semester</h1>
     <table>
         <tr>
             <!-- KD Kelas 6 -->
@@ -34,10 +36,10 @@
             <td>2</td>
             <td>Pendidikan Kewarganegaraan</td>
             <td>
-                <a href="masterinputnilaicopy.php?nilai=ptspkn31&kelas=I (satu)">3.1</a> |
-                <a href="masterinputnilaicopy.php?nilai=ptspkn32&kelas=II (dua)">3.2</a> |
-                <a href="masterinputnilaicopy.php?nilai=ptspkn33&kelas=III (tiga)">3.3</a> |
-                <a href="masterinputnilaicopy.php?nilai=ptspkn34&kelas=IV (empat)">3.4</a>
+                <a href="masterinputnilaipts.php?nilai=ptspkn31">3.1</a> |
+                <a href="masterinputnilaipts.php?nilai=ptspkn32">3.2</a> |
+                <a href="masterinputnilaipts.php?nilai=ptspkn33">3.3</a> |
+                <a href="masterinputnilaipts.php?nilai=ptspkn34">3.4</a>
             </td>    
         </tr>
         <tr>
