@@ -83,6 +83,8 @@ if(isset($_POST['tambahdatasiswa'])){
 
     $result = mysqli_query($mysqli,"INSERT INTO datasiswa (no_siswa, nis_siswa, nisn_siswa, nama_siswa, kelas, tempatlahir_siswa, tgllahir_siswa, kelamin_siswa, agama_siswa, pendseb_siswa, alamat_siswa) VALUES ('','$nis_siswa','$nisn_siswa','$nama_siswa','$kelas','$tempatlahir_siswa','$tgllahir_siswa', '$kelamin_siswa', '$agama_siswa','$pendseb_siswa','$alamat_siswa')");
 
+    $nilai = mysqli_query($mysqli,"INSERT INTO nilaiptspkn(no_ptspkn, ptspkn31) VALUES ('','0')");
+
     echo "Data Siswa Baru berhasil ditambahkan. <a href='tampildata.php'>Oke</a>";
 // header("location:tambahdata.php");
 
