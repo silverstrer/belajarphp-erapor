@@ -9,7 +9,7 @@
                     while($i < count($n_mapel)){
                         if($n_mapel[$i] > 0){
                             $cek += 1; 
-                        }
+                        } else {$cek = 1;}
                          $i++;
                     } 
                     $avgptspkn=array_sum($n_mapel)/$cek;
