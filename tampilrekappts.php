@@ -1,9 +1,33 @@
 <?php
 // Create database connection using config file
-include_once("config.php");
+include("config.php");
+
+// Cek login masuk
+session_start();
+if($_SESSION['status']!="login"){
+	header("location:login.php?pesan=belum_login");
+}
+
+// Cek data siswa dari akun yang masuk
+if($_SESSION['nama_akun']=='walas1'){
+	$kelas = "AND datasiswa.kelas='I (satu)'";
+} elseif ($_SESSION['nama_akun']=='walas2') {
+	$kelas = "AND datasiswa.kelas='II (dua)'";
+} elseif ($_SESSION['nama_akun']=='walas3') {
+	$kelas = "AND datasiswa.kelas='III (tiga)'";
+}elseif ($_SESSION['nama_akun']=='walas4') {
+	$kelas = "AND datasiswa.kelas='IV (empat)'";
+}elseif ($_SESSION['nama_akun']=='walas5') {
+	$kelas = "AND datasiswa.kelas='V (lima)'";
+}elseif ($_SESSION['nama_akun']=='walas6') {
+	$kelas = "AND datasiswa.kelas='VI (enam)'";
+}else {
+	$kelas = '';
+}
  
+
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa FROM datasiswa INNER JOIN nilaiptspkn ON datasiswa.no_siswa = nilaiptspkn.no_ptspkn ORDER BY nilaiptspkn.no_ptspkn;");
+$result = mysqli_query($mysqli, "SELECT nilaiptspkn.no_ptspkn, datasiswa.no_siswa, datasiswa.nisn_siswa, datasiswa.nama_siswa FROM datasiswa, nilaiptspkn WHERE datasiswa.no_siswa=nilaiptspkn.no_ptspkn $kelas ORDER BY nilaiptspkn.no_ptspkn;");
 
 $count=mysqli_num_rows($result);
 ?>
@@ -36,20 +60,8 @@ $count=mysqli_num_rows($result);
 				</td>
                 <td>
                     <?php
-                    // RUMUS RATA-RATA (AVERAGE)
-                    include "config.php";
-                    $query = mysqli_query($mysqli, "SELECT * FROM nilaiptspkn WHERE no_ptspkn='$rows[no_ptspkn]';");
-                    $data    =mysqli_fetch_array($query);
-                    $n_mapel    =array($data['ptspkn31'], $data['ptspkn32'], $data['ptspkn33'], $data['ptspkn34']);
-                    $i = 0;
-                    $cek = 0;
-                    while($i < count($n_mapel)){
-                        if($n_mapel[$i] > 0){
-                            $cek += 1; 
-                        }
-                         $i++;
-                    } 
-                    echo $avg=array_sum($n_mapel)/$cek;
+                    include("functions.php");
+                    echo $avgptspkn;
                     ?>
                 </td>
 

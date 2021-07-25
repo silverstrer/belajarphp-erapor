@@ -1,9 +1,32 @@
 <?php
 // Create database connection using config file
 include_once("config.php");
+
+// Cek login masuk
+session_start();
+if($_SESSION['status']!="login"){
+	header("location:login.php?pesan=belum_login");
+}
+
+// Cek data siswa dari akun yang masuk
+if($_SESSION['nama_akun']=='walas1'){
+	$kelas = "AND datasiswa.kelas='I (satu)'";
+} elseif ($_SESSION['nama_akun']=='walas2') {
+	$kelas = "AND datasiswa.kelas='II (dua)'";
+} elseif ($_SESSION['nama_akun']=='walas3') {
+	$kelas = "AND datasiswa.kelas='III (tiga)'";
+}elseif ($_SESSION['nama_akun']=='walas4') {
+	$kelas = "AND datasiswa.kelas='IV (empat)'";
+}elseif ($_SESSION['nama_akun']=='walas5') {
+	$kelas = "AND datasiswa.kelas='V (lima)'";
+}elseif ($_SESSION['nama_akun']=='walas6') {
+	$kelas = "AND datasiswa.kelas='VI (enam)'";
+}else {
+	$kelas = '';
+}
  
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, nilaiptspkn.ptspkn31, nilaiptspkn.ptspkn32, nilaiptspkn.ptspkn33, nilaiptspkn.ptspkn34 FROM datasiswa, nilaiptspkn WHERE datasiswa.no_siswa=nilaiptspkn.no_ptspkn;");
+$result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, nilaiptspkn.no_ptspkn, datasiswa.nisn_siswa, datasiswa.nama_siswa, datasiswa.kelas, nilaiptspkn.ptspkn31, nilaiptspkn.ptspkn32, nilaiptspkn.ptspkn33, nilaiptspkn.ptspkn34 FROM datasiswa, nilaiptspkn WHERE datasiswa.no_siswa=nilaiptspkn.no_ptspkn $kelas;");
 ?>
 <html>
 <head>  
