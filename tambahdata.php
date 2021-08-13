@@ -11,7 +11,7 @@
         <table>
             <tr>
                 <td><label for="nis_siswa">NIS</label></td>
-                <td><input  style="height:30px;" size="10" name="nis_siswa" type="text" id="nis_siswa" value=""></td>
+                <td><input required style="height:30px;" size="10" name="nis_siswa" type="text" id="nis_siswa" value=""></td>
             </tr>
             <tr>
                 <td><label for="nisn_siswa">NISN</label></td>
@@ -84,7 +84,7 @@ if(isset($_POST['tambahdatasiswa'])){
 
     $result = mysqli_query($mysqli,"INSERT INTO datasiswa (no_siswa, nis_siswa, nisn_siswa, nama_siswa, kelas, tempatlahir_siswa, tgllahir_siswa, kelamin_siswa, agama_siswa, pendseb_siswa, alamat_siswa) VALUES ('','$nis_siswa','$nisn_siswa','$nama_siswa','$kelas','$tempatlahir_siswa','$tgllahir_siswa', '$kelamin_siswa', '$agama_siswa','$pendseb_siswa','$alamat_siswa')");
 
-    $nilai = mysqli_query($mysqli,"INSERT INTO nilaiptspkn(no_ptspkn, ptspkn31) VALUES ('','0')");
+    $nilai = mysqli_query($mysqli,"INSERT INTO nilaiptspkn(no_ptspkn, id_siswa) VALUES ('','$nis_siswa')");
 
     echo "Data Siswa Baru berhasil ditambahkan. <a href='tampildata.php'>Oke</a>";
 // header("location:tambahdata.php");

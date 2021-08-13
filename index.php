@@ -23,6 +23,7 @@
 <?php 
     if($_SESSION['role_akun']=='admin'){
         echo "<a href='tampildata.php'>Data Siswa</a>";
+        echo "<a href='tampilsemester.php'>Data Tahun Pelajaran</a>";
     }
 ?>
     

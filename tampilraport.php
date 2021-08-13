@@ -16,43 +16,87 @@ $count=mysqli_num_rows($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tampil Raport</title>
     <style>
-        .a4-paper{
-            max-width:21cm;
-            background:#eee;
+        * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
         }
+
+        body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 12pt "Times New Roman";
+        }
+/* LEMBAR HALAMAN A4 */
+        .page{
+            width: 210mm;
+            min-height: 297mm;
+            padding: 2cm;
+            margin: 1cm auto;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        @media print {
+            html, body {
+                width: 210mm;
+                height: 297mm;        
+            }
+            .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+/* LEMBAR HALAMAN A4 */
         .header{
-            margin: 0cm 4cm;
+            margin: 0cm auto;
+            text-align: center;
         }
         .logo, .header-title{
             display: inline-block;
         }
+        .logo img{
+            width: 2.3cm;
+        }
         .header p{
             text-align: center;
-            margin: 0px;
+            margin: 0px auto;
             padding: 4px;
             font-weight: bold;
             font-size: 20px;
         }
-
+        /* .spasi{
+            min-width:7cm;
+        } */
+        table{
+            margin: 0.5cm auto;
+            text-align:left;
+            width:100%;
+        }
         .identitas{
-            display:block;
-            width:21cm;
-            margin:0.3cm 2cm;
-        }
-        .identitas .identitas-kiri, .identitas-kanan{
-            max-width:9cm;
-            display:inline;
-        }
-        .identitas span{
-            display: inline-block;
-            width:9cm;
+            width:3cm;
+            font-weight:normal;
         }
     </style>
 </head>
 <body>
-    <div class="a4-paper">
+    <div class="page">
         <div class="header">
-            <div class="logo">logo</div>
+            <div class="logo"><img src="assets/SDIT Al Husna.png" alt=""></div>
             <div class="header-title">
                 <p>LAPORAN PENILAIAN TENGAH SEMESTER</p>
                 <p>SD INTEGRAL AL HUSNA</p>
@@ -61,20 +105,35 @@ $count=mysqli_num_rows($result);
         </div>
 
         <?php while($rows=mysqli_fetch_array($result)){?>
-        <div class="identitas">
-            <div class="identitas-kiri">
-                <span>Nama : <?php echo $rows['nama_siswa']; ?></span>
-                <span>No. Induk : <?php echo $rows['nis_siswa']; ?></span>
-                <span>NISN : <?php echo $rows['nis_siswa']; ?> </span> 
-            </div>
-            <div class="identitas-kanan">
-                <span>Kelas : <?php echo $rows['kelas']; ?></span>  
-                <span>Semester : I / Ganjil</span>
-                <span>Tahun Pelajaran : 2021/2022</span>  
-            </div>
-
-        </div>            
-
+        <table>
+            <tr>
+                <th class="identitas">Nama Siswa</th>
+                <td>:</td>
+                <td style="max-width:5cm; min-width:5cm; font-weight:bold;"><?php echo $rows['nama_siswa']; ?></td>
+                <td class="spasi"></td>
+                <th class="identitas">Kelas</th>
+                <td>:</td>
+                <td><?php echo $rows['kelas']; ?></td>
+            </tr>
+            <tr>
+                <th class="identitas">NIS</th>
+                <td>:</td>
+                <td><?php echo $rows['nis_siswa']; ?></td>
+                <td class="spasi"></td>
+                <th class="identitas">Semester</th>
+                <td>:</td>
+                <td>Ganjil</td>
+            </tr>
+            <tr>
+                <th class="identitas">NISN</th>
+                <td>:</td>
+                <td><?php echo $rows['nisn_siswa']; ?></td>
+                <td class="spasi"></td>
+                <th class="identitas">Nama Sekolah</th>
+                <td>:</td>
+                <td>SD Integral Al Husna</td>
+            </tr>
+        </table>
         
         <table>
             <tr>
