@@ -1,11 +1,12 @@
 <?php
 // Create database connection using config file
 include("config.php");
-$no_urut=$_GET['no_siswa']; 
+$no_urut=$_GET['no_siswa'];
+$kelas= $_GET['kelas'];
 // Fetch all users data from database
 $result = mysqli_query($mysqli, "SELECT datasiswa.no_siswa, datasiswa.nis_siswa, datasiswa.nisn_siswa, datasiswa.nama_siswa, datasiswa.kelas FROM datasiswa WHERE no_siswa='$no_urut'");
 
-$count=mysqli_num_rows($result);
+// $count=mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ $count=mysqli_num_rows($result);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tampil Raport</title>
+    <title>Tampil Raport PTS</title>
     <style>
         * {
         box-sizing: border-box;
@@ -82,6 +83,7 @@ $count=mysqli_num_rows($result);
         /* .spasi{
             min-width:7cm;
         } */
+
         hr{
             border: 1px solid black;
         }
@@ -93,6 +95,15 @@ $count=mysqli_num_rows($result);
         .identitas{
             width:3cm;
             font-weight:normal;
+        }
+        table .nilai, .nilai tr, .nilai th, .nilai td{
+            border: 1px solid black;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        .nilai tr th{
+            text-align: center;
         }
     </style>
 </head>
@@ -142,13 +153,17 @@ $count=mysqli_num_rows($result);
   
         <hr>
 
-        <table>
+        <table class="nilai">
             <tr>
-                <th>No.</th>
-                <th>Mata Pelajaran</th>
+                <th rowspan="2">No.</th>
+                <th rowspan="2">Mata Pelajaran</th>
+                <th colspan="3">Nilai</th>
+                <th rowspan="2">Keterangan</th>
+            </tr>
+            <tr>
                 <th>Angka</th>
+                <th>Rata-rata</th>
                 <th>Predikat</th>
-                <th>Deskripsi</th>
             </tr>
             <tr>
                 <td>1</td>
@@ -169,37 +184,40 @@ $count=mysqli_num_rows($result);
                             $i++;
                         } 
                     ?>
-                <td> <?php echo $avg=array_sum($n_mapel)/$cek; ?> </td>
+                <td>
+                    <?php echo $avg=array_sum($n_mapel)/$cek;
+
+                    // Menghitung jumlah nilai rata-rata PKN
+                    mysqli_query($mysqli, "UPDATE nilaiptspkn SET rataptspkn='$avg' WHERE no_ptspkn=$no_urut;");
+                    $query =mysqli_query($mysqli, "SELECT rataptspkn FROM nilaiptspkn");
+                    while ($data=mysqli_fetch_array($query)){
+                        $jumlah[]=$data['rataptspkn'];
+                    }
+                    $total_nilai=array_sum($jumlah);
+                    ?> 
+                </td>
+
+                <td>
+                    <?php 
+                    // Menampilkan nilai rata-rata kelas
+                    if($kelas='I (satu)'){
+                        $query = mysqli_query($mysqli, "SELECT no_siswa FROM datasiswa");
+                        $count=mysqli_num_rows($query);
+                        echo $avgs=number_format($total_nilai/$count,2);
+                    }
+
+
+                    ?>
+                </td>
                 <td> <?php if ($avg >= 85){echo "A";} 
                             elseif ($avg >= 75){ echo "B";}
                             elseif ($avg >= 65){ echo "C";}
                             else {echo "D";} ?> 
                 </td>
-                <td>
-                    <?php
-                        switch(max($n_mapel)){
-                            case $data['ptspkn31']:
-                            echo $rows['nama_siswa']."nilai kd 31 paling besar"; break;
-                            case $data['ptspkn32']:
-                            echo $rows['nama_siswa']." nilai kd 32 paling besar, "; break;
-                            case $data['ptspkn33']:
-                            echo $rows['nama_siswa']."nilai kd 33 paling besar"; break;
-                            case $data['ptspkn34']:
-                            echo $rows['nama_siswa']."nilai kd 34 paling besar"; break;
-                            }
-                    ?>
-                    <?php
-                        switch(min($n_mapel)){
-                            case $data['ptspkn31']:
-                            echo "nilai kd 31 paling kecil"; break;
-                            case $data['ptspkn32']:
-                            echo "nilai kd 32 paling kecil"; break;
-                            case $data['ptspkn33']:
-                            echo "nilai kd 33 paling kecil"; break;
-                            case $data['ptspkn34']:
-                            echo "nilai kd 34 paling kecil"; break;
-                        }
-                    ?>
+                <td> <?php if ($avg >= 85){echo "Sangat baik";} 
+                            elseif ($avg >= 75){ echo "Baik";}
+                            elseif ($avg >= 65){ echo "Cukup";}
+                            else {echo "Kurang";} ?> 
                 </td>
             </tr>
         </table>

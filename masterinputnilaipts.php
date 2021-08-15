@@ -94,7 +94,7 @@ if(isset($_POST['inputptspkn'])){
 					$sql1="UPDATE nilaiptspkn SET ptspkn31='" . $_POST['ptspkn31'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'  ";
 					$result1=mysqli_query($mysqli,$sql1);
 		}
-		// header("Location: masterinputnilaipts.php?nilai=ptspkn31");	
+		header("Location: masterinputnilaipts.php?nilai=ptspkn31");	
 	}
 	elseif($_GET['nilai']=='ptspkn32'){
 		$count=count($_POST["no_ptspkn"]);
@@ -103,7 +103,7 @@ if(isset($_POST['inputptspkn'])){
 					$result1=mysqli_query($mysqli,$sql1);
 					
 		}
-		// header("Location: masterinputnilaipts.php?nilai=ptspkn32");
+		header("Location: masterinputnilaipts.php?nilai=ptspkn32");
 	}	
 	elseif($_GET['nilai']=='ptspkn33'){
 		$count=count($_POST["no_ptspkn"]);
@@ -112,7 +112,7 @@ if(isset($_POST['inputptspkn'])){
 					$result1=mysqli_query($mysqli,$sql1);
 					
 		}
-		// header("Location: masterinputnilaipts.php?nilai=ptspkn33");
+		header("Location: masterinputnilaipts.php?nilai=ptspkn33");
 	}	
 	else{
 		$count=count($_POST["no_ptspkn"]);
@@ -120,9 +120,9 @@ if(isset($_POST['inputptspkn'])){
 					$sql1="UPDATE nilaiptspkn SET ptspkn34='" . $_POST['ptspkn34'][$i]. "' WHERE no_ptspkn='" . $_POST['no_ptspkn'][$i] . "'";
 					$result1=mysqli_query($mysqli,$sql1);		
 		}
-		// header("Location: masterinputnilaipts.php?nilai=ptspkn34");
+		header("Location: masterinputnilaipts.php?nilai=ptspkn34");
 	}
-		
+	
 }
 mysqli_close($mysqli);
 

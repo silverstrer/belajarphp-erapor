@@ -60,13 +60,32 @@ $count=mysqli_num_rows($result);
 				</td>
                 <td>
                     <?php
-                    include("functions.php");
-                    echo $avgptspkn;
+						// RUMUS RATA-RATA (AVERAGE)
+						include "config.php";
+						$query = mysqli_query($mysqli, "SELECT * FROM nilaiptspkn WHERE no_ptspkn='$rows[no_ptspkn]';");
+						$data    =mysqli_fetch_array($query);
+						$n_mapel    =array($data['ptspkn31'], $data['ptspkn32'], $data['ptspkn33'], $data['ptspkn34']);
+						$i = 0;
+						$cek = 0;
+						while($i < count($n_mapel)){
+							if($n_mapel[$i] > 0){
+								$cek += 1; 
+							} $i++;
+						} 
+						echo $avgptspkn=array_sum($n_mapel)/$cek;
                     ?>
                 </td>
 
 			</tr>
-            <?php } ?>
+			<?php } ?>
+			<tr>
+				<th colspan="3">Rata-rata</th>
+				<td>
+				<?php
+				
+					?> 
+				</td>
+			</tr>
 		</table>
 </body>
 </html>

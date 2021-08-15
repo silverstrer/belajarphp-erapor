@@ -44,7 +44,9 @@ $count=mysqli_num_rows($result);
 					<?php echo $rows['kelas']; ?>
 				</td>
 				<td  style="border: 1px solid black;">
-                    <a href="editdata.php?no_siswa= <?php echo $rows['no_siswa']; ?>">edit </a>| <a target="_blank" href="tampilraport.php?no_siswa= <?php echo $rows['no_siswa']; ?>"> raport</a>
+                    <a href="editdata.php?no_siswa= <?php echo $rows['no_siswa']; ?>">edit </a>| 
+					<a target="_blank" href="tampilraport.php?no_siswa= <?php echo $rows['no_siswa']; ?>"> raport PAS / PAT</a> | 
+					<a target="_blank" href="tampilraportpts.php?no_siswa= <?php echo $rows['no_siswa']; ?>&kelas= <?php echo $rows['kelas']; ?>"> raport PTS</a>
 				</td>
 			</tr>
 			<?php } ?>
